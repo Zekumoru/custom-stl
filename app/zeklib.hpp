@@ -180,6 +180,8 @@ namespace zeklib
     string& assign(const char* s, size_t n);
     string& assign(size_t n, char c);
 
+    string& insert(size_t pos, const string& str);
+
   private:
     char* _data;
     size_t _size;

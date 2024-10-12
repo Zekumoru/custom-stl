@@ -352,4 +352,21 @@ namespace zeklib
 
     return *this;
   }
+
+  string& string::insert(size_t pos, const string& str)
+  {
+    if (pos > _size)
+      pos = _size;
+
+    string temp;
+    temp._size = _size + str._size;
+    temp._data = new char[_size + 1];
+    std::memcpy(temp._data, _data, pos);
+    std::memcpy(temp._data + pos, str._data, str._size);
+    std::memcpy(temp._data + pos + str._size, _data + pos, _size - pos);
+    temp._data[temp._size] = 0;
+    *this = std::move(temp);
+
+    return *this;
+  }
 } // namespace zeklib
