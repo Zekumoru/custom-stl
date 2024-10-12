@@ -192,6 +192,8 @@ namespace zeklib
     const char* c_str() const noexcept;
     const char* data() const noexcept;
 
+    size_t copy(char* s, size_t len, size_t pos = 0);
+
   private:
     char* _data;
     size_t _size;

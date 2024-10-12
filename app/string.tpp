@@ -425,4 +425,17 @@ namespace zeklib
   {
     return _data;
   }
+
+  size_t string::copy(char* s, size_t len, size_t pos)
+  {
+    if (pos >= _size)
+      return 0;
+
+    if (pos + len > _size || pos + len < pos)
+      len = _size - pos;
+
+    // if s doesn't have enough space, will cause undefined behavior
+    std::memcpy(s, _data + pos, len);
+    return len;
+  }
 } // namespace zeklib
