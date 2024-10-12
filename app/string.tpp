@@ -415,4 +415,14 @@ namespace zeklib
     temp._data[temp._size] = 0;
     *this = std::move(temp);
   }
+
+  const char* string::c_str() const noexcept
+  {
+    return _data;
+  }
+
+  const char* string::data() const noexcept
+  {
+    return _data;
+  }
 } // namespace zeklib

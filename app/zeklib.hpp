@@ -189,6 +189,9 @@ namespace zeklib
     void swap(string& str);
     void pop_back();
 
+    const char* c_str() const noexcept;
+    const char* data() const noexcept;
+
   private:
     char* _data;
     size_t _size;
