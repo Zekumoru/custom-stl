@@ -496,6 +496,24 @@ namespace zeklib
     return npos;
   }
 
+  size_t string::find(const string& str, size_t pos, size_t n) const noexcept
+  {
+    // si = string index, fi = find index
+    for (size_t si = pos; si < _size; si++)
+    {
+      size_t fi;
+      for (fi = 0; str._data[fi] != 0 && fi != n; fi++)
+      {
+        if (_data[si + fi] != str._data[fi])
+          break;
+      }
+      if (fi == str._size || fi == n) // string found
+        return si;
+    }
+
+    return npos;
+  }
+
   size_t string::rfind(const string& str, size_t pos) const noexcept
   {
     if (pos >= _size)
