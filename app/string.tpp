@@ -68,7 +68,7 @@ namespace zeklib
 
   std::ostream& operator<<(std::ostream& os, const string& other)
   {
-    os << other._data;
+    os << (other._data != nullptr ? other._data : "");
     return os;
   }
 
