@@ -183,8 +183,10 @@ namespace zeklib
     string& assign(size_t n, char c);
 
     string& insert(size_t pos, const string& str);
+    string& insert(size_t pos, const char* str);
     string& erase(size_t pos, size_t len = npos);
     string& replace(size_t pos, size_t len, const string& str);
+    string& replace(size_t pos, size_t len, const char* str);
 
     void swap(string& str);
     void pop_back();
@@ -195,6 +197,7 @@ namespace zeklib
     size_t copy(char* s, size_t len, size_t pos = 0);
     size_t find(const string& str, size_t pos = 0) const noexcept;
     size_t find(char c, size_t pos = 0) const noexcept;
+    size_t find(const string& str, size_t pos, size_t n) const noexcept;
     size_t rfind(const string& str, size_t pos = npos) const noexcept;
     size_t rfind(char c, size_t pos = npos) const noexcept;
 

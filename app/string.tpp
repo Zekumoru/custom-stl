@@ -14,14 +14,14 @@ namespace zeklib
   {
     _size = std::strlen(string);
     _data = new char[_size + 1];
-    strcpy(_data, string);
+    std::strcpy(_data, string);
   }
 
   string::string(const string& other)
   {
     _size = other._size;
     _data = new char[_size + 1];
-    strcpy(_data, other._data);
+    std::strcpy(_data, other._data);
   }
 
   string::string(string&& other) noexcept
@@ -45,7 +45,7 @@ namespace zeklib
 
       _size = other._size;
       _data = new char[_size + 1];
-      strcpy(_data, other._data);
+      std::strcpy(_data, other._data);
     }
 
     return *this;
@@ -360,10 +360,31 @@ namespace zeklib
 
     string temp;
     temp._size = _size + str._size;
-    temp._data = new char[_size + 1];
+    temp._data = new char[temp._size + 1];
     std::memcpy(temp._data, _data, pos);
     std::memcpy(temp._data + pos, str._data, str._size);
     std::memcpy(temp._data + pos + str._size, _data + pos, _size - pos);
+    temp._data[temp._size] = 0;
+    *this = std::move(temp);
+
+    return *this;
+  }
+
+  string& string::insert(size_t pos, const char* str)
+  {
+    size_t len = std::strlen(str);
+    if (len == 0)
+      return *this;
+
+    if (pos > _size)
+      pos = _size;
+
+    string temp;
+    temp._size = _size + len;
+    temp._data = new char[temp._size + 1];
+    std::memcpy(temp._data, _data, pos);
+    std::memcpy(temp._data + pos, str, len);
+    std::memcpy(temp._data + pos + len, _data + pos, _size - pos);
     temp._data[temp._size] = 0;
     *this = std::move(temp);
 
@@ -396,6 +417,13 @@ namespace zeklib
     return *this;
   }
 
+  string& string::replace(size_t pos, size_t len, const char* str)
+  {
+    erase(pos, len);
+    insert(pos, str);
+    return *this;
+  }
+
   void string::swap(string& str)
   {
     string temp = std::move(*this);
@@ -410,7 +438,7 @@ namespace zeklib
 
     string temp;
     temp._size = _size - 1;
-    temp._data = new char[_size + 1];
+    temp._data = new char[temp._size + 1];
     std::memcpy(temp._data, _data, temp._size);
     temp._data[temp._size] = 0;
     *this = std::move(temp);
