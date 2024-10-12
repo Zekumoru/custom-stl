@@ -229,6 +229,8 @@ namespace zeklib
   bool operator<=(const string& lhs, const string& rhs) noexcept;
   bool operator>(const string& lhs, const string& rhs) noexcept;
   bool operator>=(const string& lhs, const string& rhs) noexcept;
+
+  void swap(string& x, string& y);
 } // namespace zeklib
 
 #include "string.tpp"

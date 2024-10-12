@@ -740,4 +740,9 @@ namespace zeklib
   {
     return lhs.compare(rhs) >= 0;
   }
+
+  void swap(string& x, string& y)
+  {
+    x.swap(y);
+  }
 } // namespace zeklib
