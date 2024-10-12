@@ -171,6 +171,7 @@ namespace zeklib
     string& append(const string& str, size_t subpos, size_t sublen);
     string& append(const char* str);
     string& append(const char* str, size_t n);
+    string& append(size_t n, char c);
 
     string& push_back(char c);
     string& assign(const char* str);
