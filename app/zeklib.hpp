@@ -132,6 +132,8 @@ namespace zeklib
   class string
   {
   public:
+    static const size_t npos = -1;
+
     string();
     string(const char* string);
     string(const string& other);
@@ -181,6 +183,7 @@ namespace zeklib
     string& assign(size_t n, char c);
 
     string& insert(size_t pos, const string& str);
+    string& erase(size_t pos, size_t len = npos);
 
   private:
     char* _data;
