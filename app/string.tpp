@@ -456,4 +456,15 @@ namespace zeklib
 
     return npos;
   }
+
+  size_t string::find(char c, size_t pos) const noexcept
+  {
+    for (size_t i = pos; i < _size; i++)
+    {
+      if (c == _data[i])
+        return i;
+    }
+
+    return npos;
+  }
 } // namespace zeklib

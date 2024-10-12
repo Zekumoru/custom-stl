@@ -194,6 +194,7 @@ namespace zeklib
 
     size_t copy(char* s, size_t len, size_t pos = 0);
     size_t find(const string& str, size_t pos = 0) const noexcept;
+    size_t find(char c, size_t pos = 0) const noexcept;
 
   private:
     char* _data;
