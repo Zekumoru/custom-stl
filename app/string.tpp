@@ -297,6 +297,28 @@ namespace zeklib
     return *this;
   }
 
+  string& string::assign(const string& str, size_t subpos, size_t sublen)
+  {
+    if (subpos >= str._size)
+    {
+      sublen = 0;
+    }
+
+    if (sublen && (subpos + sublen > str._size || subpos + sublen < subpos))
+    {
+      sublen = str._size - subpos;
+    }
+
+    delete[] _data;
+
+    _size = sublen;
+    _data = new char[_size + 1];
+    std::memcpy(_data, str._data + subpos, sublen);
+    _data[_size] = 0;
+
+    return *this;
+  }
+
   string& string::assign(const string& str)
   {
     *this = str;
