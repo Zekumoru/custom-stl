@@ -438,4 +438,22 @@ namespace zeklib
     std::memcpy(s, _data + pos, len);
     return len;
   }
+
+  size_t string::find(const string& str, size_t pos) const noexcept
+  {
+    // si = string index, fi = find index
+    for (size_t si = pos; si < _size; si++)
+    {
+      size_t fi;
+      for (fi = 0; str._data[fi] != 0; fi++)
+      {
+        if (_data[si + fi] != str._data[fi])
+          break;
+      }
+      if (fi == str._size) // string found
+        return si;
+    }
+
+    return npos;
+  }
 } // namespace zeklib
