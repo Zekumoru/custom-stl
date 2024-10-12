@@ -249,6 +249,26 @@ namespace zeklib
     return *this;
   }
 
+  string& string::append(const char* str, size_t n)
+  {
+    size_t sublen = std::strlen(str);
+    if (sublen > n)
+      sublen = n;
+
+    if (sublen == 0)
+      return *this;
+
+    string temp;
+    temp._size = _size + sublen;
+    temp._data = new char[temp._size + 1];
+    std::memcpy(temp._data, _data, _size);
+    std::memcpy(temp._data + _size, str, sublen);
+    temp._data[temp._size] = 0;
+
+    *this = std::move(temp);
+    return *this;
+  }
+
   string& string::push_back(char c)
   {
     *this += c;
