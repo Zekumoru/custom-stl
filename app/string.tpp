@@ -340,4 +340,16 @@ namespace zeklib
 
     return *this;
   }
+
+  string& string::assign(size_t n, char c)
+  {
+    delete[] _data;
+
+    _size = n;
+    _data = new char[_size + 1];
+    std::memset(_data, c, _size);
+    _data[_size] = 0;
+
+    return *this;
+  }
 } // namespace zeklib
