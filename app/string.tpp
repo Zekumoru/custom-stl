@@ -575,4 +575,37 @@ namespace zeklib
 
     return npos;
   }
+
+  size_t string::find_last_of(const string& str, size_t pos) const
+  {
+    if (pos >= _size)
+      pos = _size - 1;
+
+    // si = string index, fi = find index
+    for (size_t si = pos; si != npos; si--)
+    {
+      size_t fi;
+      for (fi = 0; str._data[fi] != 0; fi++)
+      {
+        if (_data[si] == str._data[fi])
+          return si; // match found
+      }
+    }
+
+    return npos;
+  }
+
+  size_t string::find_last_of(char c, size_t pos) const
+  {
+    if (pos >= _size)
+      pos = _size - 1;
+
+    for (size_t i = pos; i != npos; i--)
+    {
+      if (_data[i] == c)
+        return i; // match found
+    }
+
+    return npos;
+  }
 } // namespace zeklib
