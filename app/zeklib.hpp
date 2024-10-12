@@ -168,6 +168,7 @@ namespace zeklib
     friend string operator+(const string& left, char right);
 
     string& append(const string& str);
+    string& append(const string& str, size_t subpos, size_t sublen);
     string& append(const char* str);
 
     string& push_back(char c);
