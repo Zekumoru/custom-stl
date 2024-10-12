@@ -395,4 +395,11 @@ namespace zeklib
     insert(pos, str);
     return *this;
   }
+
+  void string::swap(string& str)
+  {
+    string temp = std::move(*this);
+    *this = std::move(str);
+    str = std::move(temp);
+  }
 } // namespace zeklib
