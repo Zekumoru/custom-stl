@@ -324,4 +324,20 @@ namespace zeklib
     *this = str;
     return *this;
   }
+
+  string& string::assign(const char* s, size_t n)
+  {
+    size_t sublen = std::strlen(s);
+    if (sublen > n)
+      sublen = n;
+
+    delete[] _data;
+
+    _size = sublen;
+    _data = new char[_size + 1];
+    std::memcpy(_data, s, sublen);
+    _data[_size] = 0;
+
+    return *this;
+  }
 } // namespace zeklib

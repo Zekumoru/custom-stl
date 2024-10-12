@@ -177,6 +177,7 @@ namespace zeklib
     string& assign(const string& str);
     string& assign(const string& str, size_t subpos, size_t sublen);
     string& assign(const char* str);
+    string& assign(const char* s, size_t n);
 
   private:
     char* _data;
