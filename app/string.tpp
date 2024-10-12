@@ -672,4 +672,26 @@ namespace zeklib
 
     return npos;
   }
+
+  string string::substr(size_t pos, size_t len) const
+  {
+    // the logic below has been recurring somewhere in the code above and
+    // honestly there's a need to explain if I ever forget what the logic does
+    // basically the logic will match the length to the maximum _data length so
+    // that it won't memory copy over the _data array.
+    // pos + len > _size checks if the pos + len goes beyond the _data array
+    // pos + len < pos checks if an addition with a negative (a very big number)
+    // occurs (negative like -1 but size_t doesn't have negatives)
+    if (pos + len > _size || pos + len < pos)
+      len = _size - pos;
+
+    string str; // Won't create a copy since the compiler will do a NRVO
+
+    str._size = len;
+    str._data = new char[str._size + 1];
+    std::memcpy(str._data, _data + pos, len);
+    str._data[str._size] = 0;
+
+    return str;
+  }
 } // namespace zeklib

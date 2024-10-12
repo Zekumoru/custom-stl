@@ -210,6 +210,8 @@ namespace zeklib
     size_t find_last_not_of(const string& str, size_t pos = npos) const;
     size_t find_last_not_of(char c, size_t pos = npos) const;
 
+    string substr(size_t pos = 0, size_t len = npos) const;
+
   private:
     char* _data;
     size_t _size;
