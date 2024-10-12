@@ -212,6 +212,8 @@ namespace zeklib
 
     string substr(size_t pos = 0, size_t len = npos) const;
 
+    int compare(const string& str) const noexcept;
+
   private:
     char* _data;
     size_t _size;

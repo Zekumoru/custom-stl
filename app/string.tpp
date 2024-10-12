@@ -694,4 +694,20 @@ namespace zeklib
 
     return str;
   }
+
+  int string::compare(const string& str) const noexcept
+  {
+    for (size_t i = 0; i < _size && i < str._size; i++)
+    {
+      const int diff = _data[i] - str._data[i];
+      if (diff != 0)
+        return diff;
+    }
+
+    if (_size > str._size)
+      return 1;
+    if (_size < str._size)
+      return -1;
+    return 0; // seems silly but needed for when both strings are empty
+  }
 } // namespace zeklib
