@@ -388,4 +388,11 @@ namespace zeklib
     *this = std::move(temp);
     return *this;
   }
+
+  string& string::replace(size_t pos, size_t len, const string& str)
+  {
+    erase(pos, len);
+    insert(pos, str);
+    return *this;
+  }
 } // namespace zeklib

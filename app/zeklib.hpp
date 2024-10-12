@@ -184,6 +184,7 @@ namespace zeklib
 
     string& insert(size_t pos, const string& str);
     string& erase(size_t pos, size_t len = npos);
+    string& replace(size_t pos, size_t len, const string& str);
 
   private:
     char* _data;
