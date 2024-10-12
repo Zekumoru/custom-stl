@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <ostream>
 
 namespace zeklib
 {
@@ -13,7 +14,7 @@ namespace zeklib
   class vector
   {
   private:
-    T *_array;        /**< Puntatore all'array dinamico che contiene gli elementi. */
+    T* _array;        /**< Puntatore all'array dinamico che contiene gli elementi. */
     size_t _size;     /**< Numero corrente di elementi nel vettore. */
     size_t _capacity; /**< Capacità corrente del vettore (numero massimo di elementi prima del riallocamento). */
 
@@ -47,7 +48,7 @@ namespace zeklib
      *
      * @param value Riferimento all'elemento da aggiungere.
      */
-    void push_back(const T &value);
+    void push_back(const T& value);
 
     /**
      * @brief Rimuove l'ultimo elemento dal vettore.
@@ -64,7 +65,7 @@ namespace zeklib
      *
      * @throws std::out_of_range se l'indice è fuori dai limiti.
      */
-    T &at(size_t index);
+    T& at(size_t index);
 
     /**
      * @brief Accede all'elemento al indice specificato con controllo dei limiti (versione const).
@@ -74,7 +75,7 @@ namespace zeklib
      *
      * @throws std::out_of_range se l'indice è fuori dai limiti.
      */
-    const T &at(size_t index) const;
+    const T& at(size_t index) const;
 
     /**
      * @brief Sovraccarica l'operatore di indicizzazione per l'accesso agli elementi senza controllo dei limiti.
@@ -82,7 +83,7 @@ namespace zeklib
      * @param index L'indice dell'elemento da accedere.
      * @return Riferimento all'elemento al indice specificato.
      */
-    T &operator[](size_t index);
+    T& operator[](size_t index);
 
     /**
      * @brief Sovraccarica l'operatore di indicizzazione per l'accesso agli elementi senza controllo dei limiti (versione const).
@@ -90,7 +91,7 @@ namespace zeklib
      * @param index L'indice dell'elemento da accedere.
      * @return Riferimento costante all'elemento al indice specificato.
      */
-    const T &operator[](size_t index) const;
+    const T& operator[](size_t index) const;
 
     /**
      * @brief Restituisce il numero corrente di elementi nel vettore.
@@ -127,6 +128,61 @@ namespace zeklib
      */
     void reserve(size_t newCapacity);
   };
-}
 
+  class string
+  {
+  public:
+    string();
+    string(const char* string);
+    string(const string& other);
+    string(string&& other) noexcept;
+    ~string();
+
+    string& operator=(const string& other);
+    string& operator=(string&& other) noexcept;
+
+    friend std::ostream& operator<<(std::ostream& os, const string& other);
+
+    size_t size() const;
+    size_t length() const;
+
+    void clear();
+    bool empty() const;
+
+    char& operator[](const size_t index);
+    char& at(const size_t index);
+    const char& operator[](const size_t index) const;
+    const char& at(const size_t index) const;
+
+    char& front();
+    char& back();
+    const char& front() const;
+    const char& back() const;
+
+    string& operator+=(const string& other);
+    string& operator+=(const char* str);
+    string& operator+=(char c);
+
+    friend string operator+(const string& left, const string& right);
+    friend string operator+(char left, const string& right);
+    friend string operator+(const string& left, char right);
+
+    string& append(const string& str);
+    string& append(const char* str);
+
+    string& push_back(char c);
+    string& assign(const char* str);
+    string& assign(const string& str);
+
+  private:
+    char* _data;
+    size_t _size;
+  };
+
+  string operator+(const string& left, const string& right);
+  string operator+(char left, const string& right);
+  string operator+(const string& left, char right);
+} // namespace zeklib
+
+#include "string.tpp"
 #include "vector.tpp"

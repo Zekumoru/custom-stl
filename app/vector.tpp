@@ -23,7 +23,7 @@ namespace zeklib
   template <typename T>
   void vector<T>::reallocate(size_t newCapacity)
   {
-    T *newArray = new T[newCapacity];
+    T* newArray = new T[newCapacity];
 
     for (size_t i = 0; i < _size; ++i)
     {
@@ -37,7 +37,7 @@ namespace zeklib
   }
 
   template <typename T>
-  void vector<T>::push_back(const T &value)
+  void vector<T>::push_back(const T& value)
   {
     if (_size >= _capacity)
     {
@@ -66,7 +66,7 @@ namespace zeklib
   }
 
   template <typename T>
-  T &vector<T>::at(size_t index)
+  T& vector<T>::at(size_t index)
   {
     if (index >= _size)
     {
@@ -77,19 +77,19 @@ namespace zeklib
   }
 
   template <typename T>
-  const T &vector<T>::at(size_t index) const
+  const T& vector<T>::at(size_t index) const
   {
     return at(index);
   }
 
   template <typename T>
-  T &vector<T>::operator[](size_t index)
+  T& vector<T>::operator[](size_t index)
   {
     return _array[index];
   }
 
   template <typename T>
-  const T &vector<T>::operator[](size_t index) const
+  const T& vector<T>::operator[](size_t index) const
   {
     return _array[index];
   }
@@ -126,4 +126,4 @@ namespace zeklib
       return;
     reallocate(newCapacity);
   }
-}
+} // namespace zeklib
