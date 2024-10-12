@@ -638,4 +638,38 @@ namespace zeklib
     return npos;
   }
 
+  size_t string::find_last_not_of(const string& str, size_t pos) const
+  {
+    if (pos >= _size)
+      pos = _size - 1;
+
+    // si = string index, fi = find index
+    for (size_t si = pos; si != -1; si--)
+    {
+      size_t fi;
+      for (fi = 0; fi < str._size; fi++)
+      {
+        if (_data[si] == str._data[fi])
+          break;
+      }
+      if (fi == str._size)
+        return si; // match found
+    }
+
+    return npos;
+  }
+
+  size_t string::find_last_not_of(char c, size_t pos) const
+  {
+    if (pos >= _size)
+      pos = _size - 1;
+
+    for (size_t i = pos; i != -1; i--)
+    {
+      if (_data[i] != c)
+        return i;
+    }
+
+    return npos;
+  }
 } // namespace zeklib
