@@ -710,4 +710,34 @@ namespace zeklib
       return -1;
     return 0; // seems silly but needed for when both strings are empty
   }
+
+  bool operator==(const string& lhs, const string& rhs) noexcept
+  {
+    return lhs.compare(rhs) == 0;
+  }
+
+  bool operator!=(const string& lhs, const string& rhs) noexcept
+  {
+    return lhs.compare(rhs) != 0;
+  }
+
+  bool operator<(const string& lhs, const string& rhs) noexcept
+  {
+    return lhs.compare(rhs) < 0;
+  }
+
+  bool operator<=(const string& lhs, const string& rhs) noexcept
+  {
+    return lhs.compare(rhs) <= 0;
+  }
+
+  bool operator>(const string& lhs, const string& rhs) noexcept
+  {
+    return lhs.compare(rhs) > 0;
+  }
+
+  bool operator>=(const string& lhs, const string& rhs) noexcept
+  {
+    return lhs.compare(rhs) >= 0;
+  }
 } // namespace zeklib
