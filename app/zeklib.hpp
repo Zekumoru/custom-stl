@@ -187,6 +187,7 @@ namespace zeklib
     string& replace(size_t pos, size_t len, const string& str);
 
     void swap(string& str);
+    void pop_back();
 
   private:
     char* _data;

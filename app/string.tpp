@@ -402,4 +402,17 @@ namespace zeklib
     *this = std::move(str);
     str = std::move(temp);
   }
+
+  void string::pop_back()
+  {
+    if (_size == 0)
+      return;
+
+    string temp;
+    temp._size = _size - 1;
+    temp._data = new char[_size + 1];
+    std::memcpy(temp._data, _data, temp._size);
+    temp._data[temp._size] = 0;
+    *this = std::move(temp);
+  }
 } // namespace zeklib
