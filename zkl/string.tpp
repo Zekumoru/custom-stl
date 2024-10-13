@@ -67,6 +67,35 @@ namespace zkl
     return *this;
   }
 
+  std::istream& operator>>(std::istream& is, string& str)
+  {
+    str.clear();
+    int c;
+
+    // skip leading whitespace
+    while (c = is.get())
+    {
+      if (!std::isspace(c))
+      {
+        str.push_back(c);
+        break;
+      }
+    }
+
+    if (is.eof())
+      return is;
+
+    // read until newline
+    while (c = is.get())
+    {
+      if (std::isspace(c))
+        break;
+      str.push_back(c);
+    }
+
+    return is;
+  }
+
   std::ostream& operator<<(std::ostream& os, const string& other)
   {
     os << (other._data != nullptr ? other._data : "");

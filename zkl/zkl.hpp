@@ -144,7 +144,8 @@ namespace zkl
     string& operator=(const string& other);
     string& operator=(string&& other) noexcept;
 
-    friend std::ostream& operator<<(std::ostream& os, const string& other);
+    friend std::istream& operator>>(std::istream& is, string& str);
+    friend std::ostream& operator<<(std::ostream& os, const string& str);
 
     size_t size() const;
     size_t length() const;
