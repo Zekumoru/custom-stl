@@ -224,10 +224,6 @@ namespace zkl
     size_t _size;
   };
 
-  string operator+(const string& left, const string& right);
-  string operator+(char left, const string& right);
-  string operator+(const string& left, char right);
-
   bool operator==(const string& lhs, const string& rhs) noexcept;
   bool operator!=(const string& lhs, const string& rhs) noexcept;
   bool operator<(const string& lhs, const string& rhs) noexcept;
