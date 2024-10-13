@@ -1,9 +1,9 @@
 #pragma once
 
-#include "zeklib.hpp"
+#include "zkl.hpp"
 #include <stdexcept>
 
-namespace zeklib
+namespace zkl
 {
   template <typename T>
   vector<T>::vector()
@@ -126,4 +126,4 @@ namespace zeklib
       return;
     reallocate(newCapacity);
   }
-} // namespace zeklib
+} // namespace zkl
