@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <istream>
 #include <ostream>
 
 namespace zkl
@@ -214,6 +215,9 @@ namespace zkl
 
     int compare(const string& str) const noexcept;
     int compare(size_t pos, size_t len, const string& str) const noexcept;
+
+    friend std::istream& getline(std::istream& is, string& str);
+    friend std::istream& getline(std::istream& is, string& str, char delim);
 
   private:
     char* _data;

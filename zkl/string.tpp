@@ -1,6 +1,7 @@
 #pragma once
 
 #include "zkl.hpp"
+#include <cctype>
 #include <cstring>
 #include <stdexcept>
 
@@ -70,6 +71,64 @@ namespace zkl
   {
     os << (other._data != nullptr ? other._data : "");
     return os;
+  }
+
+  std::istream& getline(std::istream& is, string& str)
+  {
+    str.clear();
+    int c;
+
+    // skip leading whitespace
+    while (c = is.get())
+    {
+      if (!std::isspace(c))
+      {
+        str.push_back(c);
+        break;
+      }
+    }
+
+    if (is.eof())
+      return is;
+
+    // read until newline
+    while (c = is.get())
+    {
+      if (c == '\n' || c == '\r')
+        break;
+      str.push_back(c);
+    }
+
+    return is;
+  }
+
+  std::istream& getline(std::istream& is, string& str, char delim)
+  {
+    str.clear();
+    int c;
+
+    // skip leading whitespace
+    while (c = is.get())
+    {
+      if (!std::isspace(c))
+      {
+        str.push_back(c);
+        break;
+      }
+    }
+
+    if (is.eof())
+      return is;
+
+    // read until delim
+    while (c = is.get())
+    {
+      if (c == delim)
+        break;
+      str.push_back(c);
+    }
+
+    return is;
   }
 
   size_t string::size() const
