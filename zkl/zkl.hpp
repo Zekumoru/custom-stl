@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <ostream>
 
-namespace zeklib
+namespace zkl
 {
   /**
    * @brief Classe che implementa un vettore dinamico simile a std::vector.
@@ -231,7 +231,7 @@ namespace zeklib
   bool operator>=(const string& lhs, const string& rhs) noexcept;
 
   void swap(string& x, string& y);
-} // namespace zeklib
+} // namespace zkl
 
 #include "string.tpp"
 #include "vector.tpp"

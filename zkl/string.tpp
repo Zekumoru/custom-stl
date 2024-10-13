@@ -1,10 +1,10 @@
 #pragma once
 
-#include "zeklib.hpp"
+#include "zkl.hpp"
 #include <cstring>
 #include <stdexcept>
 
-namespace zeklib
+namespace zkl
 {
   string::string() : _data(nullptr), _size(0)
   {
@@ -745,4 +745,4 @@ namespace zeklib
   {
     x.swap(y);
   }
-} // namespace zeklib
+} // namespace zkl
