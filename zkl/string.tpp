@@ -801,6 +801,11 @@ namespace zkl
 
   int string::compare(size_t pos, size_t len, const string& str) const noexcept
   {
+    if (pos > _size)
+    {
+      throw std::out_of_range("Position out of range");
+    }
+
     // ti = this' data index, si = str's data index
     size_t ti;
     size_t si;
