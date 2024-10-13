@@ -711,6 +711,31 @@ namespace zkl
     return 0; // seems silly but needed for when both strings are empty
   }
 
+  int string::compare(size_t pos, size_t len, const string& str) const noexcept
+  {
+    // ti = this' data index, si = str's data index
+    size_t ti;
+    size_t si;
+    for (ti = pos, si = 0; ti < _size && si < str._size && si < len; ti++, si++)
+    {
+      const int diff = _data[ti] - str._data[si];
+      if (diff != 0)
+        return diff;
+    }
+
+    // case: all matches except len is bigger than str's size
+    // return remaining length (negative size_t) which is capped by str's size
+    if (len > si)
+      return (pos + len > _size ? _size - pos - si : len - si);
+
+    // case: all matches except len is shorter than str's size
+    // return missing length (positive size_t)
+    if (len < str._size)
+      return len - str._size;
+
+    return 0;
+  }
+
   bool operator==(const string& lhs, const string& rhs) noexcept
   {
     return lhs.compare(rhs) == 0;

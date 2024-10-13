@@ -213,6 +213,7 @@ namespace zkl
     string substr(size_t pos = 0, size_t len = npos) const;
 
     int compare(const string& str) const noexcept;
+    int compare(size_t pos, size_t len, const string& str) const noexcept;
 
   private:
     char* _data;
